@@ -62,7 +62,6 @@ method() { }
 ## **Clases**
 
 TypeScript mejora la programación orientada a objetos en JavaScript proporcionando una sintaxis más clara y familiar para los desarrolladores provenientes de lenguajes como Java o C#. TypeScript introduce conceptos como clases, interfaces, herencia, y encapsulamiento, que son fundamentales en la programación orientada a objetos.
-TypeScript tiene una sintaxis de clase más moderna que JavaScript. Las clases de TypeScript son más seguras y flexibles que las clases de JavaScript.
 
 ```tsx
 class Person {
@@ -83,13 +82,37 @@ const person = new Person("John Doe", 30);
 person.sayHello(); // Output: Hello, I'm John Doe
 ```
 
-**Funciones**
+## **Funciones**
 
-TypeScript tiene una sintaxis de función más moderna que JavaScript. Las funciones de TypeScript son más seguras y flexibles que las funciones de JavaScript.
+En JavaScript, las funciones son objetos que se pueden asignar a variables, pasar como argumentos y devolver como valores. Las funciones se definen utilizando la palabra clave `function` seguida de la lista de parámetros, el cuerpo de la función y el tipo de retorno (opcional).
+
+```jsx
+function sumar(a, b) {
+  return a + b;
+}
+
+const resultado = sumar(1, 2);
+console.log(resultado); // 3
+```
+
+En TypeScript, las funciones también son objetos, pero se pueden especificar sus tipos de parámetros y retorno. Esto se hace utilizando los tipos `number`, `string`, `boolean` y otros tipos definidos por el usuario.
+
+```tsx
+function sumar(a: number, b: number): number {
+  return a + b;
+}
+
+const resultado = sumar(1, 2); // OK
+const resultado2 = sumar("1", "2"); // Error: los parámetros no coinciden
+```
+
+La diferencia clave entre las funciones de JavaScript y TypeScript es que TypeScript admite el **tipado de funciones**. Esto significa que TypeScript puede verificar si los parámetros y el valor de retorno de una función coinciden con los tipos especificados. Esto ayuda a prevenir errores en tiempo de ejecución y a mejorar la legibilidad y la mantenibilidad del código. 
+
+Cuando los tipos de parámetros y retorno se especifican explícitamente, es más fácil entender lo que hace una función. Además, el tipado de funciones puede ayudar a detectar errores en el código antes de que se ejecute.
 
 ## **Tuplas**
 
-Las tuplas son un tipo de dato que permite almacenar múltiples campos con diferentes tipos de datos. En JavaScript, esto se puede lograr con un array, pero no hay verificación de tipos para asegurarse de que cada elemento es del tipo correcto. TypeScript tiene una sintaxis de tupla más moderna que JavaScript. Las tuplas de TypeScript son más seguras y flexibles que las tuplas de JavaScript.
+Las tuplas son un tipo de dato que permite almacenar múltiples campos con diferentes tipos de datos. En JavaScript, esto se puede lograr con un array, pero no hay verificación de tipos para asegurarse de que cada elemento es del tipo correcto. 
 
 ```tsx
 let x: [string, number];
