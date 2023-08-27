@@ -1,6 +1,4 @@
-# Ciclo ID 1
-
-Etiquetas: Entregables, Evidencias, Repositorio
+# Conceptos de JavaScript vs TypeScript
 
 TypeScript es un superconjunto de JavaScript que agrega funciones y características adicionales para mejorar la productividad y la calidad del código. A continuación, se presentan algunos de los conceptos más importantes de TypeScript, junto con una explicación de cómo se relacionan con JavaScript y cómo representan una mejora:
 
