@@ -8,6 +8,7 @@ import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcrypt';
+import * as bcryptjs from 'bcryptjs';
 
 
 @Injectable()
@@ -40,11 +41,14 @@ export class AuthService {
 
   async login({ email, password }: LoginDto) {
     const user = await this.userService.findOneByEmail(email);
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
+    
     if (!user) {
       throw new UnauthorizedException('Invalid email');
     }
+
+
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
+
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid password');
     }
@@ -58,7 +62,11 @@ export class AuthService {
     };
   }
 
-  async profile({ email, role }: { email: string; role: string }) {
+  async profile({ email, role }: { email: string, role: string}) {
+
+    if (role !== 'admin') {
+      throw new UnauthorizedException('You are not admin, not authorized to access')
+    }
     return await this.userService.findOneByEmail(email);
   }
 }

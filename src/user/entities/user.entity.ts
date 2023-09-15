@@ -3,7 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  ManyToOne,
+  OneToMany
 } from 'typeorm';
 import { IsNotEmpty, IsEmail, IsBoolean } from 'class-validator';
 import { Book } from 'src/books/entities/book.entity';
@@ -36,6 +36,6 @@ export class User {
   @CreateDateColumn()
   createdAt: Date;
 
-  @ManyToOne( () => Book, (book) => book.user)
+  @OneToMany( () => Book, (book) => book.user)
   books: Book[]
 }

@@ -5,7 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   Index,
-  OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { IsNotEmpty, IsString, IsInt } from 'class-validator';
 import { User } from 'src/user/entities/user.entity';
@@ -47,7 +47,7 @@ export class Book {
   @Column({ default: false })
   isReserved: boolean;
 
-  @OneToMany(() => User, (user) => user.id,{
+  @ManyToOne(() => User, (user) => user.id,{
     eager: true
   })
   user: User;
