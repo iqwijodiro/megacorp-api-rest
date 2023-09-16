@@ -23,8 +23,7 @@ export class UserService {
     const newUser = this.userRepository.create({
       email,
       username,
-      password: cryptPassword,
-      isAdmin: createUserDto.isAdmin,
+      password: cryptPassword
     });
     return await this.userRepository.save(newUser);
   }
@@ -42,7 +41,10 @@ export class UserService {
   }
 
   async findOneByEmail(email: string) {
-    return await this.userRepository.findOneBy({ email });
+    return this.userRepository.findOne({
+      where: { email },
+      select: ['id', 'username', 'email', 'password', 'role'],
+    });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
@@ -57,9 +59,6 @@ export class UserService {
     }
     if (updateUserDto.password) {
       userEdited.password = updateUserDto.password;
-    }
-    if (updateUserDto.isAdmin !== undefined) {
-      userEdited.isAdmin = updateUserDto.isAdmin;
     }
 
     return this.userRepository.save(userEdited);

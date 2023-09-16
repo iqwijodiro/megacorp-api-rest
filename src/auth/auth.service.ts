@@ -30,8 +30,7 @@ export class AuthService {
     await this.userService.create({
       username,
       email,
-      password: hashedPassword,
-      isAdmin: false,
+      password: hashedPassword
     });
 
     return {

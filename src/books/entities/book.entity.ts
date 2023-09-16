@@ -8,7 +8,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { IsNotEmpty, IsString, IsInt } from 'class-validator';
-import { User } from 'src/user/entities/user.entity';
+import { User } from '../../user/entities/user.entity';
 
 @Entity()
 @Index(['title', 'author']) // Ejemplo de índice compuesto

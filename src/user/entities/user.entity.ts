@@ -6,7 +6,8 @@ import {
   OneToMany
 } from 'typeorm';
 import { IsNotEmpty, IsEmail, IsBoolean } from 'class-validator';
-import { Book } from 'src/books/entities/book.entity';
+import { Book } from '../../books/entities/book.entity';
+import { Role } from '../../auth/enums/role.enum';
 
 @Entity()
 export class User {
@@ -22,12 +23,12 @@ export class User {
   @IsNotEmpty()
   username: string;
 
-  @Column()
+  @Column({ nullable: false, select: false })
   @IsNotEmpty()
   password: string;
 
-  @Column({ default: 'user'})
-  role: string;
+  @Column({ type: 'enum', enum: Role,  default: Role.USER })
+  role: Role;
 
   @Column({ default: false })
   @IsBoolean()
