@@ -15,8 +15,8 @@ import { AuthService } from './auth.service';
 import { Request } from 'express'
 // import { Roles } from './decorators/roles.decorator';
 // import { RolesGuard } from './guard/roles.guard';
-import { Role } from './enums/role.enum';
-import { Auth } from './decorators/auth.decorator';
+import { Role } from '../common/enums/role.enum';
+import { Auth } from '../common/decorators/auth.decorator';
 
 interface RequestWithUser extends Request{
   user: {

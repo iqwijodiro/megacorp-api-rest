@@ -6,6 +6,7 @@ import {
   UpdateDateColumn,
   Index,
   ManyToOne,
+  JoinColumn
 } from 'typeorm';
 import { IsNotEmpty, IsString, IsInt } from 'class-validator';
 import { User } from '../../user/entities/user.entity';
@@ -47,14 +48,15 @@ export class Book {
   @Column({ default: false })
   isReserved: boolean;
 
-  @ManyToOne(() => User, (user) => user.id,{
-    eager: true
-  })
+  @JoinColumn(
+      {
+       name: 'userEmail', 
+       referencedColumnName: 'email' 
+      }
+  )
+  @ManyToOne(() => User)
   user: User;
 
-  // book age
-  bookAge(): number {
-    const currentYear = new Date().getFullYear();
-    return currentYear - this.publishedYear;
-  }
+  @Column()
+  userEmail: string
 }

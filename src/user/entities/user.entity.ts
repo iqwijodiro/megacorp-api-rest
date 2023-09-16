@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 import { IsNotEmpty, IsEmail, IsBoolean } from 'class-validator';
 import { Book } from '../../books/entities/book.entity';
-import { Role } from '../../auth/enums/role.enum';
+import { Role } from '../../common/enums/role.enum';
 
 @Entity()
 export class User {

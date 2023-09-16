@@ -10,7 +10,12 @@ import {
 import { BooksService } from './books.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { Auth } from '../common/decorators/auth.decorator';
+import { Role } from '../common/enums/role.enum';
+import { ActiveUserInterface } from '../common/interfaces/active-user.interface';
+import { ActiveUser } from 'src/common/decorators/active-user.decorator';
 
+@Auth(Role.ADMIN)
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
@@ -21,7 +26,11 @@ export class BooksController {
   }
 
   @Get()
-  findAll() {
+  findAll(
+    @ActiveUser()
+    user: ActiveUserInterface
+  ) {
+    console.log(user);
     return this.booksService.findAll();
   }
 
