@@ -14,7 +14,9 @@ import { Auth } from '../common/decorators/auth.decorator';
 import { Role } from '../common/enums/role.enum';
 import { ActiveUserInterface } from '../common/interfaces/active-user.interface';
 import { ActiveUser } from 'src/common/decorators/active-user.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Books')
 @Auth(Role.ADMIN)
 @Controller('books')
 export class BooksController {

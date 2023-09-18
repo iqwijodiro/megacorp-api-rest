@@ -10,11 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
+const openapi = require("@nestjs/swagger");
 const typeorm_1 = require("typeorm");
 const class_validator_1 = require("class-validator");
 const book_entity_1 = require("../../books/entities/book.entity");
 const role_enum_1 = require("../../common/enums/role.enum");
 let User = class User {
+    static _OPENAPI_METADATA_FACTORY() {
+        return { id: { required: true, type: () => Number }, email: { required: true, type: () => String }, username: { required: true, type: () => String }, password: { required: true, type: () => String }, role: { required: true, enum: require("../../common/enums/role.enum").Role }, isAdmin: { required: true, type: () => Boolean }, createdAt: { required: true, type: () => Date }, books: { required: true, type: () => [require("../../books/entities/book.entity").Book] } };
+    }
 };
 exports.User = User;
 __decorate([

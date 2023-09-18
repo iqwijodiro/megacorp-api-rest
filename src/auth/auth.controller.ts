@@ -17,6 +17,7 @@ import { Request } from 'express'
 // import { RolesGuard } from './guard/roles.guard';
 import { Role } from '../common/enums/role.enum';
 import { Auth } from '../common/decorators/auth.decorator';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 interface RequestWithUser extends Request{
   user: {
@@ -25,6 +26,7 @@ interface RequestWithUser extends Request{
   }
 }
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -41,6 +43,7 @@ export class AuthController {
   }
 
   @Get('profile')
+  @ApiBearerAuth()
   @Auth(Role.USER)
   profile(@Req() req: RequestWithUser) {
     return this.authService.profile(req.user);
